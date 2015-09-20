@@ -1,17 +1,26 @@
 ----------------------------------------------------------------------
 Libraries have been installed in:
    /app/ImageMagick6/lib
+准备条件
+安装ImageMagic，配置./configure --prefix=/app/ImageMagick6
 
-If you ever happen to want to link against installed libraries
-in a given directory, LIBDIR, you must either use libtool, and
-specify the full pathname of the library, or use the `-LLIBDIR'
-flag during linking and do at least one of the following:
-   - add LIBDIR to the `LD_LIBRARY_PATH' environment variable
-     during execution
-   - add LIBDIR to the `LD_RUN_PATH' environment variable
-     during linking
-   - use the `-Wl,-rpath -Wl,LIBDIR' linker flag
-   - have your system administrator add LIBDIR to `/etc/ld.so.conf'
 
-See any operating system documentation about shared libraries for
-more information, such as the ld(1) and ld.so(8) manual pages.
+1、./configure --prefix=/app/jmagick --with-magick-home=/app/ImageMagick6  --with-magick-lib-dir=/app/ImageMagick6/lib --with-magick-inc-dir=/app/ImageMagick6/include/ImageMagick-6  --enable-diagnostic
+a.出现以下的问题
+Package MagickCore was not found in the pkg-config search path.
+Perhaps you should add the directory containing `MagickCore.pc'
+to the PKG_CONFIG_PATH environment variable
+No package 'MagickCore' found
+Package MagickCore was not found in the pkg-config search path.
+Perhaps you should add the directory containing `MagickCore.pc'
+to the PKG_CONFIG_PATH environment variable
+No package 'MagickCore' found
+Package MagickCore was not found in the pkg-config search path.
+Perhaps you should add the directory containing `MagickCore.pc'
+to the PKG_CONFIG_PATH environment variable
+No package 'MagickCore' found
+解决方法
+(1)、pkg-config是向configure程序提供系统信息的程序，比如软件的版本，库的版本，库的路径等等
+建立软链接：sudo ln -s /app/ImageMagick6/lib/pkgconfig/* /usr/lib/pkgconfig/
+重新.回到执行 [1]
+2、make && make install
