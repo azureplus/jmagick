@@ -24,3 +24,5 @@ No package 'MagickCore' found
 建立软链接：sudo ln -s /app/ImageMagick6/lib/pkgconfig/* /usr/lib/pkgconfig/
 重新.回到执行 [1]
 2、make && make install
+
+ldd .so可以看到该库链接的库是否正常

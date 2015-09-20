@@ -6,18 +6,24 @@ import magick.MagickImage;
  */
 public class demo
 {
-    static 
+    static
     {
-        System.setProperty("jmagick.systemclassloader","false");
+        System.setProperty("jmagick.systemclassloader", "false");
     }
-    
+
     public static void main(String[] args) throws Exception
     {
-        System.setProperty("java.library.path","/app/jmagick/lib");
+        System.setProperty("java.library.path", "/app/jmagick/lib");
         System.out.println(System.getProperty("java.library.path"));
-        ImageInfo info;
+        ImageInfo outImgInfo;
         MagickImage image;
-        info = new ImageInfo();
-        image = new MagickImage(new ImageInfo("/app/dev/jmagick/test/magicktest/pics.jpg"));
+        MagickImage outImage;
+        outImgInfo = new ImageInfo();
+        image = new MagickImage(new ImageInfo("/app/dev/jmagick/demo/src/test.jpg"));
+        outImage = image.scaleImage(800,1000);
+        outImage.setFileName("/app/dev/jmagick/demo/src/test.webp");
+        boolean result= outImage.writeImage(new ImageInfo());
+        System.out.println("=========================" + outImage.getFileName());
+        System.out.println(result);
     }
 }
